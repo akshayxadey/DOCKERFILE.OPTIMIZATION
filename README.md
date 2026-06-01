@@ -1,6 +1,6 @@
 # Dockerfile Optimization Playground
 
-This repository contains a deliberately heavy Dockerfile and helper scripts/workflow to experiment with Dockerfile optimization techniques.
+This repository contains a deliberately heavy Dockerfile and helper scripts/workflow to experiment with Dockerfile optimization techniques. The current `Dockerfile.heavy` has been optimized to reduce image size while preserving the same tooling and runtime behavior.
 
 Files added:
 - [Dockerfile.heavy](Dockerfile.heavy) — intentionally large image for optimization practice.

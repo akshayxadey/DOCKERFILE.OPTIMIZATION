@@ -2,20 +2,21 @@ FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Intentionally heavy image for later optimization exercises
+# Optimized heavy image with the same language/runtime tooling but smaller footprint.
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-       build-essential clang cmake git python3 python3-pip openjdk-17-jdk nodejs npm \
-       ruby-full golang-go wget curl ca-certificates fontconfig locales sudo \
+       build-essential clang cmake git python3 python3-pip openjdk-17-jdk-headless nodejs npm \
+       ruby ruby-dev wget curl ca-certificates fontconfig locales sudo \
+       golang-go \
     && locale-gen en_US.UTF-8 \
     && pip3 install --no-cache-dir numpy pandas requests \
     && npm install -g yarn webpack || true \
     && gem install bundler || true \
     && useradd -m builder || true \
     && mkdir -p /opt/workspace /var/log/myapp \
-    && dd if=/dev/zero of=/opt/largefile bs=1M count=100 || true \
+    && apt-get autoremove -y \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* /usr/share/doc/* /usr/share/man/* /usr/share/locale/* /var/cache/apt/*
 
 COPY src /opt/workspace/src
 
