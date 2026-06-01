@@ -4,7 +4,7 @@ set -euo pipefail
 # Usage: set REGISTRY, REPO, REGISTRY_USERNAME, REGISTRY_TOKEN env vars, then run this script.
 IMAGE=${IMAGE:-dockerfile_optimization:heavy}
 REGISTRY=${REGISTRY:-ghcr.io}
-REPO=${REPO:-${GITHUB_REPOSITORY:-youruser/yourrepo}}
+REPO=${REPO:-${GITHUB_REPOSITORY:-akshayxadey/DOCKERFILE.OPTIMIZATION}}
 TAG=${TAG:-heavy-$(git rev-parse --short HEAD 2>/dev/null || echo latest)}
 
 FULL_TAG=${FULL_TAG:-${REGISTRY}/${REPO}:${TAG}}
