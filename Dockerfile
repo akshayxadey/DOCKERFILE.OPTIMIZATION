@@ -51,7 +51,7 @@ RUN groupadd -g 1000 user && \
 
 USER user
 
-COPY --chown=user:user src/run.sh /home/user/run.sh
+COPY --chown=user src/run.sh /home/user/run.sh
 RUN chmod +x /home/user/run.sh
 
 ENTRYPOINT ["/home/user/run.sh"]
