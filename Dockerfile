@@ -15,7 +15,7 @@ RUN git clone https:github.com/tfutils/tfenv.git /usr/local/tfenv
 
 ENV TERRAFORM_VERSION="1.14.0"
 RUN for version in $TERRAFORM_VERSION; do \
-    /usr/local/tfenv/bin/tfenv install $version;
+    /usr/local/tfenv/bin/tfenv install $version; \
 done
 
 FROM amazonlinux:2023-minimal
