@@ -46,7 +46,7 @@ RUN groupadd -g 1000 user || true && \
     echo "user:user" | chpasswd || true
 
 COPY src/run.sh /home/user/run.sh
-RUN chmod +x /home/user/run.sh && chown user:user /home/user/run.sh
+RUN chmod +x /home/user/run.sh
 
 USER user
 
