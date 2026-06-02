@@ -1,4 +1,4 @@
-FROM amazonlinux:2023-minimal AS builder
+FROM amazonlinux:2023 AS builder
 RUN yum install -y \
     gcc \
     python3 \
@@ -18,7 +18,7 @@ RUN for version in $TERRAFORM_VERSION; do \
     /usr/local/tfenv/bin/tfenv install $version; \
 done
 
-FROM amazonlinux:2023-minimal
+FROM amazonlinux:2023
 RUN yum install -y curl && yum clean all
 
 RUN curl https://packages.microsoft.com/config/rhel/7/prod.repo -o /etc/yum.repos.d/microsoft-prod.repo && \
