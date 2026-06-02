@@ -1,12 +1,12 @@
 FROM amazonlinux:2023 AS builder
-RUN yum install -y \
+RUN dnf install -y \
     gcc \
     python3 \
     git \
     python3-pip \
     python3-devel \
     unzip && \
-    yum clean all
+    dnf clean all && rm -rf /var/cache/dnf
 
 RUN python3 -m venv /opt/venv && \
     /opt/venv/bin/pip install --no-cache-dir boto3 azure-cli==2.79.0
@@ -19,11 +19,11 @@ RUN for version in $TERRAFORM_VERSION; do \
   done
 
 FROM amazonlinux:2023
-RUN yum update -y && yum install -y curl && yum clean all && rm -rf /var/cache/yum
+RUN dnf install -y curl && dnf clean all && rm -rf /var/cache/dnf
 
 RUN curl https://packages.microsoft.com/config/rhel/7/prod.repo -o /etc/yum.repos.d/microsoft-prod.repo && \
     rpm --import https://packages.microsoft.com/keys/microsoft.asc && \
-    yum install -y \
+    dnf install -y \
         aws-cli \
         git \
         openssh-clients \
@@ -32,7 +32,7 @@ RUN curl https://packages.microsoft.com/config/rhel/7/prod.repo -o /etc/yum.repo
         unzip \
         powershell \
         nodejs && \
-    yum clean all && rm -rf /var/cache/yum
+    dnf clean all && rm -rf /var/cache/dnf
 
 COPY --from=builder /opt/venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
