@@ -37,11 +37,9 @@ COPY --from=builder /opt/venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 
 COPY --from=builder /usr/local/tfenv /usr/local/tfenv
-RUN ln -s /usr/local/tfenv/bin/* /usr/local/bin/
+RUN ln -s /usr/local/tfenv/bin/* /usr/local/bin/ || true
 
 ENV TERRAFORM_VERSION="1.14.0"
-RUN DEFAULT_TERRAFORM_VERSION=$(echo $TERRAFORM_VERSION | awk '{print $1}') && \
-    tfenv use $DEFAULT_TERRAFORM_VERSION
 
 RUN groupadd -g 1000 user && \
     useradd -rm -d /home/user -s /bin/bash -g root -G sudo user && \
