@@ -42,6 +42,6 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: Dockerfile.heavy
+          file: Dockerfile
           push: true
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_REPO }}:heavy-${{ github.sha }}
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_REPO }}:optimized-${{ github.sha }}

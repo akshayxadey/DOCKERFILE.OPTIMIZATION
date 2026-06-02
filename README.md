@@ -1,9 +1,9 @@
 # Dockerfile Optimization Playground
 
-This repository contains a deliberately heavy Dockerfile and helper scripts/workflow to experiment with Dockerfile optimization techniques. The current `Dockerfile.heavy` has been optimized to reduce image size while preserving the same tooling and runtime behavior.
+This repository contains an image and helper scripts/workflow to experiment with Dockerfile optimization techniques. The current `Dockerfile` has been optimized to reduce image size while preserving the same tooling and runtime behavior.
 
 Files added:
-- [Dockerfile.heavy](Dockerfile.heavy) — intentionally large image for optimization practice.
+- [Dockerfile](Dockerfile) — image used for optimization practice (now optimized).
 - [.github/workflows/build_upload_container.yaml](.github/workflows/build_upload_container.yaml) — GitHub Actions workflow to build and push the image.
 - [src/runs.sh](src/runs.sh) — helper to run the image locally.
 - [build_container.sh](build_container.sh) — local build helper.
