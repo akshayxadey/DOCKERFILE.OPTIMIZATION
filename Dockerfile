@@ -19,7 +19,6 @@ RUN for version in $TERRAFORM_VERSION; do \
   done
 
 FROM amazonlinux:2023
-RUN dnf install -y curl && dnf clean all && rm -rf /var/cache/dnf
 
 RUN curl https://packages.microsoft.com/config/rhel/7/prod.repo -o /etc/yum.repos.d/microsoft-prod.repo && \
     rpm --import https://packages.microsoft.com/keys/microsoft.asc && \
