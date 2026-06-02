@@ -11,29 +11,28 @@ RUN yum install -y \
 RUN python3 -m venv /opt/venv && \
     /opt/venv/bin/pip install --no-cache-dir boto3 azure-cli==2.79.0
 
-RUN git clone https:github.com/tfutils/tfenv.git /usr/local/tfenv
+RUN git clone https://github.com/tfutils/tfenv.git /usr/local/tfenv
 
 ENV TERRAFORM_VERSION="1.14.0"
 RUN for version in $TERRAFORM_VERSION; do \
     /usr/local/tfenv/bin/tfenv install $version; \
-done
+  done
 
 FROM amazonlinux:2023
-RUN yum install -y curl && yum clean all
+RUN yum update -y && yum install -y curl && yum clean all && rm -rf /var/cache/yum
 
 RUN curl https://packages.microsoft.com/config/rhel/7/prod.repo -o /etc/yum.repos.d/microsoft-prod.repo && \
     rpm --import https://packages.microsoft.com/keys/microsoft.asc && \
     yum install -y \
         aws-cli \
-        git\
-        openshh-clients \
+        git \
+        openssh-clients \
         python3 \
         jq \
-        unzip && \
+        unzip \
         powershell \
-        nodejs \
-        unzip && \  
-    yum clean all
+        nodejs && \
+    yum clean all && rm -rf /var/cache/yum
 
 COPY --from=builder /opt/venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
