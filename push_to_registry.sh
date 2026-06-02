@@ -4,10 +4,10 @@ set -euo pipefail
 # Usage: set REGISTRY, REPO, and credentials env vars, then run this script.
 # Supports GHCR (ghcr.io) and Docker Hub (docker.io). For Docker Hub, set
 # DOCKERHUB_USERNAME and DOCKERHUB_PASSWORD (or reuse REGISTRY_USERNAME/REGISTRY_TOKEN).
-IMAGE=${IMAGE:-dockerfile_optimization:heavy}
+IMAGE=${IMAGE:-dockerfile_optimization:light}
 REGISTRY=${REGISTRY:-ghcr.io}
 REPO=${REPO:-${GITHUB_REPOSITORY:-akshayxadey/DOCKERFILE.OPTIMIZATION}}
-TAG=${TAG:-heavy-$(git rev-parse --short HEAD 2>/dev/null || echo latest)}
+TAG=${TAG:-light-$(git rev-parse --short HEAD 2>/dev/null || echo latest)}
 
 FULL_TAG=${FULL_TAG:-${REGISTRY}/${REPO}:${TAG}}
 
