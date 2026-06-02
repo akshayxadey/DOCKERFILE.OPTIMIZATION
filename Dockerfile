@@ -41,9 +41,9 @@ RUN ln -s /usr/local/tfenv/bin/* /usr/local/bin/ || true
 
 ENV TERRAFORM_VERSION="1.14.0"
 
-RUN groupadd -g 1000 user && \
-    useradd -rm -d /home/user -s /bin/bash -g root -G sudo user && \
-    echo "user:user" | chpasswd
+RUN groupadd -g 1000 user || true && \
+    useradd -m -d /home/user -s /bin/bash -u 1000 user || true && \
+    echo "user:user" | chpasswd || true
 
 USER user
 
